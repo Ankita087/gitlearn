@@ -1,0 +1,34 @@
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$(".btncls").click(function(){
+
+var abc=
+{x:"test string"};
+
+$.ajax({
+url:"ajaxlearn.php",
+method:"POST",
+dataType:"json",
+data:abc,
+success: function(data){
+	console.log(data);
+}
+});
+});
+});
+</script>
+
+
+<html>
+<body>
+<p id="pid" value="abc">this is p tag</p>
+<button class="btncls" id="findout"> nmxz casn</button>
+this is for ajax training;
+</body>
+</html>

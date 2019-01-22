@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>FORM</title>
+<center>FORM</center>
+<br>
+</head>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.errors{
+color:red;
+}
+</style>
+<script>
+function onLoadFunction()
+{
+document.getElementById("nerror").style.display = 'none';
+document.getElementById("merror").style.display = 'none';
+document.getElementById("gerror").style.display = 'none';
+document.getElementById("aerror").style.display = 'none';
+document.getElementById("terror").style.display = 'none';
+document.getElementById("cerror").style.display = 'none';
+document.getElementById("lerror").style.display="none";
+}
+
+function validateForm() {
+
+
+var error=0;
+  var firstname = document.forms["myform"]["firstname"].value;
+  if (firstname == "") {
+    //alert("Name must be filled out");
+	document.getElementById("nerror").style.display = 'block';
+	error=1;
+    //return false;
+  }
+  else{
+  document.getElementById("nerror").style.display = 'none';
+  }
+   var address = document.forms["myform"]["address"].value;
+  if (address == "") {
+    document.getElementById("aerror").style.display="block";
+	error=1;
+    //return false;
+	}
+	else{
+  document.getElementById("aerror").style.display = 'none';
+  }
+	 var emailaddress = document.forms["myform"]["emailaddress"].value;
+  if (emailaddress == "") {
+   
+	document.getElementById("merror").style.display = 'block';
+  //  e.preventDefault();
+	//return false;
+	error=1;
+  }
+  else{
+  document.getElementById("merror").style.display = 'none';
+  }
+  
+  	 var usrtel = document.forms["myform"]["usrtel"].value;
+  if (usrtel == "") {
+   
+	document.getElementById("terror").style.display = 'block';
+  //  e.preventDefault();
+	//return false;
+	error=1;
+  }
+  else{
+  document.getElementById("terror").style.display = 'none';
+  }
+  
+  var gender = document.forms["myform"]["gender"].value;
+	alert(gender);
+  if (gender!="male" && gender!="female") {
+   //alert("i am here");
+	document.getElementById("gerror").style.display = 'block';
+  //  e.preventDefault();
+	//return false;
+	error=1;
+  }
+  else{
+  	document.getElementById("gerror").style.display = 'none';
+  }
+  
+ var language='';
+ if(document.getElementById("hindi").checked)
+ {
+ language=language.concat(" hindi");
+ }
+ if(document.getElementById("english").checked)
+ {
+ language=language.concat(" english");
+ }
+ if(document.getElementById("french").checked)
+ {
+ language=language.concat(" french");
+ }
+ //alert(language);
+ if(language=="")
+ {
+ error=1;
+ document.getElementById("lerror").style.display="block";
+ }
+ else
+ {
+ 	document.getElementById("lerror").style.display = 'none';
+ }
+    if(error==1)
+  return false;
+  
+
+  else
+  {
+  }
+}
+</script>
+<body onload="onLoadFunction()">
+<div id=”wrapper” style="background-color:grey">
+ 
+<form name="myform" action="insert.php" onsubmit="return validateForm()" method="post">
+<center>
+
+<label id=”label”>Name</label>
+<input type="text" name="firstname">
+<span id="nerror" class="errors">please enter name</span>
+<br><br>
+ 
+ <label id=”label”>Email</label>
+ <input type="email" name="emailaddress"><br><br>
+ <span id="merror" class="errors">please enter email</span>
+
+<label id=”label”  >COUNTRY</label><select name="country">
+  <option value="INDIA">INDIA</option>
+  <option value="PAKISTAN">PAKISTAN</option>
+  <option value="NEPAL">NEPAL</option>
+  <option value="CHINA">CHINA</option>
+</select>
+<br> 
+<span id="cerror">please select country</span>
+<br>
+
+<label id=”label”>GENDER</label><input type="radio" name="gender" value="male"> Male<br>
+<span id="gerror" class="errors">please select gender</span>
+
+<input type="radio" name="gender" value="female"> Female<br><br>
+
+<label id=”label”>ADDRESS</label><textarea name="address" rows="4" cols="50"></textarea><br><br>
+<span id="aerror" class="errors">please enter addrress</span>
+
+<label id=”label”>TELEPHONE</label><input type="tel" name="usrtel"><br><br>
+<span id="terror" class="errors">please enter telephone</span>
+
+
+LANGUAGE:<input type="checkbox" name="HINDI" value="HINDI" id="hindi"> HINDI
+<input type="checkbox" name="ENGLISH" value="ENGLISH" id="english"> ENGLISH
+<input type="checkbox" name="FRENCH" value="FRENCH" id="french" > FRENCH<br>
+<span id="lerror" class="errors">please Select known languages</span>
+ <input type="submit" value="Submit">
+ 
+</center>
+</form>
+</div>
+
+
+</body>
+
+</html>
